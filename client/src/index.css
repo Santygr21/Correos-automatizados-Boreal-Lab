@@ -1,0 +1,843 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+/* ------------------------------------------------------------------
+   BOREAL LAB · Clarity in Motion
+   Less noise. More direction.
+------------------------------------------------------------------- */
+
+:root {
+  /* Palette */
+  --green: #0e9e67; /* Main */
+  --green-deep: #0a8354; /* Hover */
+  --green-soft: rgba(14, 158, 103, 0.08);
+  --green-faint: rgba(14, 158, 103, 0.05);
+  --green-ring: rgba(14, 158, 103, 0.16);
+
+  --ink-deep: #062a37; /* Secondary */
+
+  --ink: #1e1e1e; /* Black */
+  --warm: #f5f7f6; /* White */
+  --pure: #ffffff;
+  --line: #e4e8e6; /* Soft Gray */
+  --line-soft: rgba(228, 232, 230, 0.72);
+  --muted: #6b6b6b; /* Gray Text */
+
+  --ok: #0e9e67;
+  --fail: #c23b2c;
+  --pending: #cfcfcf;
+  --sending: #ff822f;
+
+  /* Radii */
+  --r-input: 8px;
+  --r-btn: 8px;
+  --r-card: 12px;
+  --r-large: 16px;
+
+  /* Shadows · minimal */
+  --shadow-card: 0 1px 2px rgba(30, 30, 30, 0.04);
+
+  /* Type */
+  --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--warm);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand-name {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.brand-tag {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mark {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+}
+
+.mark-core {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.mark-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(14, 158, 103, 0.32);
+  border-radius: 50%;
+  animation: orbit-spin 4.5s linear infinite;
+}
+
+.mark-orbit::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+/* ---------- Intro ---------- */
+
+.intro {
+  margin-bottom: 48px;
+  max-width: 34rem;
+}
+
+.intro h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(42px, 6vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+
+.intro h1 .accent {
+  color: var(--green);
+}
+
+.intro p {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  background: var(--pure);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: 32px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.sec-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: var(--r-btn);
+  background: var(--green-soft);
+  color: var(--green);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.sec-head h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.lede {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 62ch;
+  margin: 0 0 24px;
+}
+
+/* ---------- Form ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+
+.grid label {
+  margin-bottom: 0;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-input);
+  background: var(--pure);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #b5b5b5;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-ring);
+}
+
+code {
+  font-family: var(--font-display), ui-monospace, monospace;
+  font-size: 12.5px;
+  background: var(--green-soft);
+  color: var(--green);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* ---------- Buttons ---------- */
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.btn {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: var(--r-btn);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.4;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--green-ring);
+}
+
+.btn-primary {
+  background: var(--green);
+  color: var(--warm);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--green-deep);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--ink-deep);
+  background: rgba(30, 30, 30, 0.035);
+}
+
+.btn-text {
+  background: transparent;
+  border-color: transparent;
+  color: var(--green);
+  padding: 10px 14px;
+}
+
+.btn-text:hover:not(:disabled) {
+  background: var(--green-faint);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Badge ---------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--warm);
+  color: var(--muted);
+}
+
+.badge-test {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.badge-ok {
+  background: rgba(19, 122, 82, 0.1);
+  color: var(--ok);
+}
+
+.badge-fail {
+  background: rgba(194, 59, 44, 0.1);
+  color: var(--fail);
+}
+
+/* ---------- Dropzone ---------- */
+
+.dropzone {
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  border: 1.5px dashed #d5d5d5;
+  border-radius: var(--r-large);
+  background: var(--warm);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  margin-bottom: 0;
+}
+
+.dropzone:hover {
+  border-color: var(--green);
+  background: var(--green-faint);
+}
+
+.dropzone input[type="file"] {
+  display: none;
+}
+
+.dz-icon {
+  color: var(--green);
+}
+
+.dz-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.dz-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 16px 0 0;
+}
+
+/* ---------- Signature editor ---------- */
+
+.sig-block {
+  margin-top: 4px;
+  padding: 20px;
+  border: 1.5px dashed var(--line);
+  border-radius: var(--r-large);
+  background: var(--warm);
+}
+
+.sig-block label {
+  margin-bottom: 14px;
+}
+
+.sig-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+
+.sig-toggle input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+.sig-editor {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  min-height: 140px;
+  color: var(--ink);
+  background: var(--pure);
+}
+
+.sig-block .lede {
+  margin-bottom: 0;
+}
+
+/* ---------- Table ---------- */
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+th {
+  text-align: left;
+  padding: 10px 12px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover td {
+  background: rgba(245, 247, 246, 0.6);
+}
+
+.th-status {
+  width: 80px;
+}
+
+/* ---------- Errors ---------- */
+
+.errors {
+  color: var(--fail);
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 16px 0 0;
+  padding-left: 18px;
+}
+
+/* ---------- Email preview ---------- */
+
+.mail {
+  border: 1px solid var(--line);
+  border-radius: var(--r-large);
+  overflow: hidden;
+  background: var(--pure);
+  margin-bottom: 8px;
+}
+
+.mail-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--pure);
+  border-bottom: 1px solid var(--line);
+}
+
+.mail-brand {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--green);
+}
+
+.mail-from {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.mail-subject {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding: 24px 24px 0;
+}
+
+.mail-body {
+  padding: 12px 24px 28px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #1e1e1e;
+  word-wrap: break-word;
+}
+
+.mail-sig {
+  padding: 18px 24px 28px;
+  border-top: 1px solid var(--line);
+}
+
+.mail-sig img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Status dots ---------- */
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pending);
+  transition: background 0.2s ease;
+}
+
+.dot-sending {
+  background: var(--sending);
+  animation: pulse-amber 1.6s ease-in-out infinite;
+}
+
+.dot-sent {
+  background: var(--ok);
+}
+
+.dot-failed {
+  background: var(--fail);
+}
+
+/* ---------- Summary ---------- */
+
+.summary {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin: 8px 0 4px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(36px, 6vw, 48px);
+  line-height: 1;
+  color: var(--green);
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Failures ---------- */
+
+.failure-list {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.failure-list h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.failure-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.failure-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 13px;
+}
+
+.failure-list li:last-child {
+  border-bottom: none;
+}
+
+.failure-list li span {
+  color: var(--muted);
+  word-break: break-word;
+}
+
+/* ---------- Alert ---------- */
+
+.alert {
+  padding: 14px 16px;
+  border-radius: var(--r-card);
+  font-size: 14px;
+  margin: 0;
+}
+
+.alert-fail {
+  background: rgba(194, 59, 44, 0.08);
+  border: 1px solid rgba(194, 59, 44, 0.22);
+  color: var(--fail);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-amber {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 130, 47, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(255, 130, 47, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 130, 47, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-orbit,
+  .dot-sending {
+    animation: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px) {
+  .page {
+    padding: 32px 16px 56px;
+  }
+
+  .card {
+    padding: 22px;
+    border-radius: var(--r-card);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .grid label {
+    margin-bottom: 16px;
+  }
+
+  .summary {
+    gap: 32px;
+  }
+}
+
+/* ---------- Tabs ---------- */
+
+.tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--pure);
+  border: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+
+.tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 9px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab-active {
+  background: var(--ink-deep);
+  color: #fff;
+}
+
+.tab-active:hover {
+  color: #fff;
+}
+
+/* ---------- Respuestas ---------- */
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.resp-sub {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 28px 0 12px;
+}
+
+.reply-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+}
+
+.reply-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--green);
+}
+
+.reply-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}

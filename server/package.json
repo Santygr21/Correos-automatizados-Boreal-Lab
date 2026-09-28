@@ -1,0 +1,16 @@
+{
+  "name": "correos-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "imapflow": "^2.0.6",
+    "mailparser": "^3.9.28",
+    "nodemailer": "^6.9.15"
+  }
+}
