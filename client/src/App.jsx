@@ -51,7 +51,7 @@ const SIG_ICON1 =
 const SIG_ICON2 =
   "https://docs.google.com/docs-images-rt/ALKuztbtm9Cj2f0MZe8UfzjF7A2SaS1rqiEy5sdZ2crGG4vcFusfwjAOAId_uTw7lBtYQlaItPyFFKK6VBDkFqz1voCgJ2mr2Qsa0WKIaFc0CYDp05RUQ6YzW5207xpgEmZgEChhymunCUUBay1C4qSFlryavJYSCimmjo8_GfM8Rg=s2048";
 const SIG_ICON3 =
-  "https://docs.google.com/docs-images-rt/ALKuztae1sjuOAkXCzllmtoFyLChLyOzflFfPbVzX5U8K8U2TX19HAAKvAkWCM_Bf6oGml8lQ6Ah5JH6IYLCceCqA98NvHMxr4bZwd_Z6lxZX2aiw2cumDQtDAbBHGGXy6pEu87ZqTBMvLeRqH8T6vS6uDoTPQlVQMrsYX_lHSM_4Q=s2048";
+  "https://docs.google.com/docs-images-rt/ALKuztYvQUtuwM2VI3DqEFls6-q1kact4JDzGoS016yRNE317wRhepgPUSGawmefcZNyJ9uKIZky7cy-NSGakfB2x53ogqiLtS-IvJFgTwM56F6fazj80ixuQKXWw8XU2FZ8C4Js1C0ZVMmMmBgc-hbAXlm5KijfxdZolkoH9GOLQQ=s2048";
 
 const DEFAULT_SIGNATURE = `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:'Mulish',Arial,Helvetica,sans-serif;color:#1e1e1e;">
 <tr>
@@ -73,12 +73,14 @@ const DEFAULT_SIGNATURE = `<table role="presentation" cellpadding="0" cellspacin
     <tr>
       <td style="padding:0 8px 0 0;"><a href="https://www.linkedin.com/company/boreal-lab" style="text-decoration:none;display:block;"><img src="${SIG_ICON1}" width="28" height="28" alt="LinkedIn" style="display:block;border:0;" /></a></td>
       <td style="padding:0 8px 0 0;"><a href="https://www.behance.net/boreal-lab" style="text-decoration:none;display:block;"><img src="${SIG_ICON2}" width="28" height="28" alt="Behance" style="display:block;border:0;" /></a></td>
-      <td style="padding:0;"><a href="https://dribbble.com/boreallab" style="text-decoration:none;display:block;"><img src="${SIG_ICON3}" width="28" height="28" alt="Dribbble" style="display:block;border:0;" /></a></td>
+      <td style="padding:0;"><a href="https://boreallab.co" style="text-decoration:none;display:block;"><img src="${SIG_ICON3}" width="28" height="28" alt="Boreal Lab" style="display:block;border:0;" /></a></td>
     </tr>
     </table>
   </td>
 </tr>
 </table>`;
+
+const SIG_VERSION = "2";
 
 function escapeHtml(str) {
   return String(str)
@@ -194,9 +196,15 @@ export default function App() {
   const [includeSignature, setIncludeSignature] = useState(
     () => localStorage.getItem("sigOn") !== "0"
   );
-  const [signatureHtml, setSignatureHtml] = useState(
-    () => localStorage.getItem("sigHtml") ?? DEFAULT_SIGNATURE
-  );
+  const [signatureHtml, setSignatureHtml] = useState(() => {
+    const stored = localStorage.getItem("sigHtml");
+    if (stored == null || localStorage.getItem("sigVersion") !== SIG_VERSION) {
+      localStorage.setItem("sigHtml", DEFAULT_SIGNATURE);
+      localStorage.setItem("sigVersion", SIG_VERSION);
+      return DEFAULT_SIGNATURE;
+    }
+    return stored;
+  });
   const [recipients, setRecipients] = useState([]);
   const [csvErrors, setCsvErrors] = useState([]);
   const [csvName, setCsvName] = useState("");
@@ -221,6 +229,7 @@ export default function App() {
   function updateSignature(value) {
     setSignatureHtml(value);
     localStorage.setItem("sigHtml", value);
+    localStorage.setItem("sigVersion", SIG_VERSION);
   }
 
   function updateSignatureToggle(on) {
